@@ -1,5 +1,7 @@
+from pet.mood import GRUMPY, HAPPY, PLAYFUL, normalize_mood
+
 ASCII_FRAMES = {
-    "happy": {
+    HAPPY: {
         "open": r"""
  /\_/\
 ( ^.^ )  Mood: Happy
@@ -11,7 +13,7 @@ ASCII_FRAMES = {
  > ^ <
 """,
     },
-    "playful": {
+    PLAYFUL: {
         "open": r"""
  /\_/\
 ( o.o )  Mood: Playful
@@ -23,7 +25,7 @@ ASCII_FRAMES = {
  > ^ <
 """,
     },
-    "grumpy": {
+    GRUMPY: {
         "open": r"""
  /\_/\
 ( -.- )  Mood: Grumpy
@@ -39,5 +41,5 @@ ASCII_FRAMES = {
 
 
 def get_frame(mood: str, blink: bool = False) -> str:
-    mood_frames = ASCII_FRAMES.get(mood, ASCII_FRAMES["playful"])
+    mood_frames = ASCII_FRAMES[normalize_mood(mood)]
     return mood_frames["closed"] if blink else mood_frames["open"]
